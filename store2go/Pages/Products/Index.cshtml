@@ -11,7 +11,11 @@
 
 <table class="table">
     <tr>
-        <th>ID</th>
+        <th>
+            <a asp-page="./Index" asp-route-sortOrder="@Model.IdSort">
+                ID
+            </a>
+        </th>
         <th>
             <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort">
                 Jméno

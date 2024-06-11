@@ -21,6 +21,7 @@ namespace store2go.Pages.Products
         public string MinStoredSort { get; set; }
         public string CreatedSort { get; set; }
         public string BarcodeSort { get; set; }
+        public string IdSort { get; set; }
         public IndexModel(ApplicationDbContext context)
         {
             this._context = context;
@@ -35,6 +36,7 @@ namespace store2go.Pages.Products
             MinStoredSort = "MinStored";
             CreatedSort = "Created";
             BarcodeSort = "Barcode";
+            IdSort = "Id";
             IQueryable<Product> products = from s in _context.Products
                                              select s;
             switch (sortOrder)
@@ -62,6 +64,9 @@ namespace store2go.Pages.Products
                     break;
                 case "Barcode":
                     products = products.OrderBy(s => s.Barcode);
+                    break;
+                case "Id":
+                    products = products.OrderBy(s => s.Id);
                     break;
                 default:
                     products = products.OrderBy(s => s.Name);
