@@ -1,0 +1,70 @@
+﻿@page
+@model store2go.Pages.Products.DetailsModel
+
+@{
+    ViewData["Title"] = "Detaily";
+}
+
+<h2>Detaily  @Html.DisplayFor(model => model.Product.Name)</h2>
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Jméno
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.Name)
+        </dd>
+        <dt class="col-sm-2">
+            Výrobce
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.Producer)
+        </dd>
+        <dt class="col-sm-2">
+            Kategorie
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.Category)
+        </dd>
+        <dt class="col-sm-2">
+            Cena
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.Price)
+        </dd>
+        <dt class="col-sm-2">
+            Popis
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.Description)
+        </dd>
+        <dt class="col-sm-2">
+            Obrázek
+        </dt>
+        <dd class="col-sm-10">
+            <img src="/Data/Images/@Html.DisplayFor(model => model.Product.ImageFileName)" max-width: 600px;/>
+        </dd>
+        <dt class="col-sm-2">
+            Skladem
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.Stored)
+        </dd>
+        <dt class="col-sm-2">
+            Minimum-upozornění
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.MinStored)
+        </dd>
+        <dt class="col-sm-2">
+            Vytvořeno
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Product.CreatedAt)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@Model.Product?.Id">Upravit</a>
+</div>

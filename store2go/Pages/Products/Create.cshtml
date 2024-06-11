@@ -1,0 +1,110 @@
+﻿@page
+@model store2go.Pages.Products.CreateModel
+@{
+    ViewData["Title"] = "Vytvořit";
+}
+
+<div class="row">
+    <div class="text-center mb-5">
+        <h2>Nový produkt</h2>
+
+        @if (Model.errorMessage.Length > 0)
+        {
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>@Model.errorMessage</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Zavřít"></button>
+            </div>
+        }
+        <form method="post" enctype="multipart/form-data">
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Jméno</label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="ProductDto.Name" />
+                    <span asp-validation-for="ProductDto.Name" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Značka/výrobce</label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="ProductDto.Producer" />
+                    <span asp-validation-for="ProductDto.Producer" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Kategorie</label>
+                <div class="col-sm-8">
+                    <select class="form-select" asp-for="ProductDto.Category">
+                        <option value="Pečivo">Pečivo</option>
+                        <option value="Ovoce">Ovoce</option>
+                        <option value="Zelenina">Zelenina</option>
+                        <option value="Maso">Maso</option>
+                        <option value="Mléčné výrobky">Mléčné výrobky</option>
+                        <option value="Nápoje">Nápoje</option>
+                        <option value="Alkohol">Alkohol</option>
+                        <option value="Tabák">Tabák</option>
+                        <option value="Elektronika">Elektronika</option>
+                    </select>
+                    <span asp-validation-for="ProductDto.Category" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Cena</label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="ProductDto.Price" />
+                    <span asp-validation-for="ProductDto.Price" class="text-danger"></span>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Popis</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" asp-for="ProductDto.Description"></textarea>
+                    <span asp-validation-for="ProductDto.Description" class="text-danger"></span>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Č. kód</label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="ProductDto.Barcode"></input>
+                    <span asp-validation-for="ProductDto.Barcode" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Skladem</label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="ProductDto.Stored"></input>
+                    <span asp-validation-for="ProductDto.Stored" class="text-danger"></span>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Minimum-upozornění</label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="ProductDto.MinStored"></input>
+                    <span asp-validation-for="ProductDto.MinStored" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <label class="col-sm-4 col-form-label">Obrázek</label>
+                <div class="col-sm-8">
+                    <input class="form-control" asp-for="ProductDto.ImageFile" />
+                    <span asp-validation-for="ProductDto.ImageFile" class="text-danger"></span>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="offset-sm-4 col-sm-4 d-grid">
+                    <button type="submit" class="btn btn-primary">Potvrdit</button>
+                </div>
+            </div>
+            
+        </form>
+
+    </div>
+</div>

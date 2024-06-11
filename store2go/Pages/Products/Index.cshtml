@@ -1,0 +1,88 @@
+﻿@page
+@model store2go.Pages.Products.IndexModel
+@{
+    ViewData["Title"] = "Seznam";
+}
+
+<h2 class="text-center mb-5">Seznam produktů</h2>
+
+<a class="btn btn-primary" href="/Products/Create">Nový produkt</a>
+
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>
+            <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort">
+                Jméno
+            </a>
+        </th>
+        <th>
+            <a asp-page="./Index" asp-route-sortOrder="@Model.ProducerSort">
+                Výrobce
+            </a>
+        </th>
+        <th>
+            <a asp-page="./Index" asp-route-sortOrder="@Model.CategorySort">
+                Kategorie
+            </a>
+        </th>
+        <th>
+            <a asp-page="./Index" asp-route-sortOrder="@Model.BarcodeSort">
+                Č. kód
+            </a>
+        </th>
+        <th>
+            <a asp-page="./Index" asp-route-sortOrder="@Model.PriceSort">
+                Cena
+            </a>
+        </th>
+        <th>Obrázek</th>
+        <th>Popis</th>
+        <th>
+            <a asp-page="./Index" asp-route-sortOrder="@Model.StoredSort">
+                Skladem
+            </a>
+        </th>
+        <th>
+            <a asp-page="./Index" asp-route-sortOrder="@Model.MinStoredSort">
+                Minimum-upozornění
+            </a>
+        </th>
+        <th>
+            <a asp-page="./Index" asp-route-sortOrder="@Model.CreatedSort">
+                Vytvořeno
+            </a>
+        </th>
+        <th>Akce</th>
+    </tr>
+    @foreach(var product in Model.Products)
+    {
+        <tr>
+            <td>@product.Id</td>
+            <td>@product.Name</td>
+            <td>@product.Producer</td>
+            <td>@product.Category</td>
+            <td>
+                @product.Barcode
+            </td>
+            <td>@(product.Price)Kč</td>
+            <td><a href="/Data/Images/@product.ImageFileName"><img src="/Data/Images/@product.ImageFileName" height="60" /></a></td>
+            <td>@product.Description</td>
+            @if (product.Stored <= product.MinStored)
+            {
+                <td style="color:red; font-weight:bold;">@product.Stored</td>
+            } else
+            {
+                <td style="color:green; font-weight:bold;">@product.Stored</td>
+            }
+            <td>@product.MinStored</td>
+            <td>@product.CreatedAt.ToString("dd/MM/yyyy hh/mm/ss")</td>
+            <td style="white-space:nowrap">
+                <a class="btn-outline-dark" href="Products/Edit?id=@product.Id">Upravit</a><br />
+                <a class="btn-outline-dark" href="Products/Details?id=@product.Id">Detaily</a><br />
+                <a class="btn-outline-dark" href="Products/Delete?id=@product.Id">Vymazat</a>
+            </td>
+        </tr>
+    }
+</table>

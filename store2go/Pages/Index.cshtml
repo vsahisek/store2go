@@ -1,0 +1,71 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Domů";
+}
+
+<div class="row">
+    <div class="text-center mb-5">
+        <h2>Důležitá upozornění</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Jméno
+                    </th>
+                    <th>
+                        Obrázek
+                    </th>
+                    <th>
+                        Č. kód
+                    </th>
+                    <th>
+                        Skladem
+                    </th>
+                    <th>
+                        Cena
+                    </th>
+                    <th>
+                        Akce
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Products)
+                {
+                    @if (item.Stored <= item.MinStored)
+                    {
+
+                        <tr style="color:red">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                <a href="/Data/Images/@item.ImageFileName"><img src="/Data/Images/@item.ImageFileName" height="60" /></a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Barcode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Stored)
+                            </td>
+                            <td>
+                               @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            <td style="white-space:nowrap">
+                                <a class="btn-outline-dark" href="Products/Edit?id=@item.Id">Upravit</a><br />
+                                <a class="btn-outline-dark" href="Products/Details?id=@item.Id">Detaily</a><br />
+                                <a class="btn-outline-dark" href="Products/Delete?id=@item.Id">Vymazat</a>
+                            </td>
+                         </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item">
+                <a class="btn btn-primary" asp-area="" asp-page="/Products/Index">Seznam produktů</a>
+            </li>
+        </ul>
+    </div>
+</div>

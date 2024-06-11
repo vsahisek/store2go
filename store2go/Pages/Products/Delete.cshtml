@@ -1,0 +1,17 @@
+﻿@page
+@model store2go.Pages.Products.DeleteModel
+@{
+    ViewData["Title"] = "Vymazat";
+}
+<div class="row">
+    <div class="text-center mb-5">
+        <h2>Vymazat produkt</h2>
+        <h3>Jsi si jistý, že chceš odstranit produkt?</h3>
+        <h4>@Model.Product.Name</h4>
+        <label></label>
+        <img src="/Data/Images/@Model.Product.ImageFileName" width="200" />
+        <form method="post">
+            <input type="hidden" asp-for="Product.Id" />
+            <input type="submit" class="btn btn-primary" value="Vymazat" class="btn btn-danger" />        </form>
+    </div>
+</div>
