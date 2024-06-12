@@ -20,6 +20,8 @@ namespace store2go.Models
         public int Stored { get; set; }
         [Required(ErrorMessage = "Minimální skladová hodnota je nezbytná")]
         public int MinStored { get; set; }
+        [DataType(DataType.Upload)]
+        [AllowedExtensions(new string[] { ".jpg", ".png", ".bmp", ".gif"  })]
         public IFormFile? ImageFile { get; set; }
     }
 }

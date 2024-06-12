@@ -68,14 +68,14 @@ namespace store2go.Pages.Products
             }
 
             // Unikatni jmeno
-            if (context.Products.Where(x => x.Name.Equals(ProductDto.Name)).Any() && product.Name != ProductDto.Name )
+            if (context.Products.Where(x => x.Name.Equals(ProductDto.Name)).Any() && product.Name != ProductDto.Name)
             {
                 errorMessage = "Toto jméno je již použito: " + ProductDto.Name;
                 return Page();
             }
 
             // Unikatni barcode
-            if (context.Products.Where(x => x.Barcode.Equals(ProductDto.Barcode)).Any() && product.Barcode != ProductDto.Barcode )
+            if (context.Products.Where(x => x.Barcode.Equals(ProductDto.Barcode)).Any() && product.Barcode != ProductDto.Barcode)
             {
                 errorMessage = "Tento kód je již použit: " + ProductDto.Barcode;
                 return Page();
@@ -83,6 +83,7 @@ namespace store2go.Pages.Products
 
             // upravit obrazek kdyz je novy
             string newFileName = product.ImageFileName;
+
             if (ProductDto.ImageFile != null)
             {
                 newFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff");
@@ -97,6 +98,7 @@ namespace store2go.Pages.Products
                 string oldImageFullPath = environment.WebRootPath + "/Data/Images/" + product.ImageFileName;
                 System.IO.File.Delete(oldImageFullPath);
             }
+
             // upravit db
             product.Name = ProductDto.Name;
             product.Producer = ProductDto.Producer;
